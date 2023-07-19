@@ -10,7 +10,6 @@ export default async function Home() {
 
   return (
     <div>
-      <div>Homepage</div>
       <div>{names.length === 0 ? "No entry yet" : "Top 10 posts"}</div>
 
       <div>

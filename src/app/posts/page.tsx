@@ -1,18 +1,22 @@
+import NameItem from "@/components/NameItem";
 import { prisma } from "@/db";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 async function getAllNames() {
+  "use server";
   return await prisma.names.findMany();
 }
 
 async function AllPosts() {
   const names = await getAllNames();
+
   return (
     <div>
       <div>{names.length === 0 ? "No entry yet" : "All Names here"}</div>
       <div>
         {names?.map((name, index) => (
-          <div key={index}>{`${name.name} -> ${name.meaning}`}</div>
+          <NameItem {...name} key={index} />
         ))}
       </div>
     </div>
